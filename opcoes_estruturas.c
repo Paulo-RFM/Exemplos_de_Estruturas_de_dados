@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "LCSE.c"
-
+#include "LLE.c"
 
 int main(){
     int op;
@@ -13,7 +13,7 @@ int main(){
 
         switch (op){
             case 1:
-                //inserir_inicio(&ptrLista, pedir_letra());
+                controller_LLE();
                 break;
             case 2: 
                 //inserir_final(&ptrLista, pedir_letra());

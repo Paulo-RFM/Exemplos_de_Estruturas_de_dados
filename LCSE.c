@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+//Lista Circular Simplesmente Encadeada
 typedef struct sBBT_LCSE{
     char letra;
     struct BBT_LCSE* prox;
@@ -223,7 +223,7 @@ void controller_LCSE(){
             mostrar_lista(&lista);
             break;
         case 6:
-            mostra_vogais(&lista);
+            mostra_vogais(&lista); 
             break;
         default:
             printf("\nOpcao invalida...\n");
