@@ -140,10 +140,10 @@ return removed;
 }
 
 int remover_inicioLLE(No_LLE* lista){
-    int removed;
+    int removed = 0;
     if(lista_vaziaLLE(lista)){
         printf("\n\tLista Vazia");
-        return;
+        return removed;
     }
 
     for(int i = 0 ; i < lista->n ; i++){

@@ -3,6 +3,7 @@
 #include <string.h>
 #include "LCSE.c"
 #include "LLE.c"
+#include "LSE.c"
 
 int main(){
     int op;
@@ -14,6 +15,9 @@ int main(){
         switch (op){
             case 1:
                 controller_LLE();
+                break;
+            case 2:
+                controller_LSE();
                 break;
             case 4:
                 controller_LCSE();

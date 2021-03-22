@@ -154,7 +154,7 @@ void mostra_vogais(No_LCSE** lista){
 
 }
 
-void lista_libera(No_LCSE** lista){
+void lista_liberaLCSE(No_LCSE** lista){
     No_LCSE *p;
     No_LCSE *t;
 
@@ -231,6 +231,6 @@ void controller_LCSE(){
         }
     }while(op != 0);
 
-    lista_libera(&lista);
+    lista_liberaLCSE(&lista);
 
 }
