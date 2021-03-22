@@ -12,12 +12,13 @@ void menu_LSE(){
     printf("\n\n\tMENU LSE");
     printf("\n(1) Inserir elemento início da lista");
     printf("\n(2) Inserir elemento final da lista");
-    printf("\n(3) remover elemento no inicio da lista");
-    /*printf("\n(4) ");
-    printf("\n(5) ");
+    printf("\n(3) Remover elemento no inicio da lista");
+    printf("\n(4) Remover elemento por valor");
+    /*printf("\n(5) ");
     printf("\n(6) ");
     printf("\n(7) ");*/
     printf("\n(8) Exibir todos os elementos da lista");
+    printf("\n(0) Voltar para menu inicial");
     printf("\nEntre com uma opcao: ");
 }
 
@@ -120,7 +121,32 @@ No_LSE* remover_inicioLSE(No_LSE* lista){
 
 return lista;
 }
+/*
+No_LSE* remove_elementoLSE(No_LSE* lista){
+    No_LSE* aux = lista;
+    No_LSE* ant = lista;
+    int elem = 0, k = 0;
+    if(lista_vaziaLSE(lista)){
+        printf("\n\tlLista vazia");
+        return;
+    }
 
+    printf("\n-Entre com o valor a ser removido: ");
+    scanf("%d", &elem);
+
+    //if(lista->prox == NULL && aux == lista){
+        if(aux->info == elem){
+            ant = aux->prox;
+            lista = ant;
+            
+        }
+    
+
+    
+    free(aux);
+    free(ant);
+}
+*/
 void mostrar_listaLSE(No_LSE* lista){
     No_LSE* aux = lista;
     
@@ -173,11 +199,15 @@ void controller_LSE(){
         case 8:
             mostrar_listaLSE(lista);
             break;
+        case 0:
+            break;
         default:
             printf("\n\tOpcao invalida...\n");
             break;
         }
 
     }while(op != 0);
+
 lista_liberaLSE(lista);
+return;
 }
