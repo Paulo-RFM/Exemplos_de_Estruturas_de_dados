@@ -40,7 +40,7 @@ void inserir_inicio(No_LCSE** lista, char elemento){
         (*lista)->prox = no_LCSEvo;
 
     }else{
-        putchar("\n\tErro na alocacao...\n");
+        printf("\n\tErro na alocacao...\n");
         return;
     }
 }
@@ -129,29 +129,29 @@ printf("<-ptrList\n");
 
 void mostra_vogais(No_LCSE** lista){
     No_LCSE* aux = *lista;
-    char vogais[] = {'a', 'e', 'i', 'o', 'u'};
-
+ 
     if(lista_vaziaLCSE(&aux)){
         printf("\n\tLista vazia");
         return;
     }
+    
+    printf("\nVogais: ");
 
      if(*lista == (*lista)->prox){
-        for(int i = 0 ; i < 5 ; i++){
-            if(strcmp(aux->letra, vogais[i]) == 0){
-                putchar(aux->letra);
-            }
+        if(aux->letra == 'a' || aux->letra == 'e' || aux->letra == 'i' || aux->letra == 'o' || aux->letra == 'u'){
+            putchar(aux->letra);
         }
         return;
     }
 
-    for(int i = 0 ; aux->prox != *lista ; i++){
-        if(strcmp(aux->letra, vogais[i]) == 0){
+    do{
+        if(aux->letra == 'a' || aux->letra == 'e' || aux->letra == 'i' || aux->letra == 'o' || aux->letra == 'u'){
             putchar(aux->letra);
         }
         aux = aux->prox;
-    }
+    }while(aux->prox != *lista);
 
+return;
 }
 
 void lista_liberaLCSE(No_LCSE** lista){
@@ -194,6 +194,7 @@ void menu_LCSE(){
     printf("\n(4) Remover elemento do final da lista");
     printf("\n(5) Exibir todos os elementos da lista");
     printf("\n(6) Exibir os elementos que forem vogais");
+    printf("\n(0) Voltar ao menu inicial");
     printf("\nEntre com uma opcao: ");
 }
 
@@ -225,6 +226,8 @@ void controller_LCSE(){
         case 6:
             mostra_vogais(&lista); 
             break;
+        case 0:
+            break;
         default:
             printf("\nOpcao invalida...\n");
             break;
@@ -232,5 +235,5 @@ void controller_LCSE(){
     }while(op != 0);
 
     lista_liberaLCSE(&lista);
-
+return;
 }
