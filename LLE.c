@@ -20,6 +20,7 @@ void menu_LLE(){
     printf("\n(6) Remover elemento no final da lista");
     printf("\n(7) Remover elemento(pelo valor)");
     printf("\n(8) Exibir todos os elementos da lista");
+    printf("\n(0) Voltar ao menu inicial");
     printf("\nEntre com uma opcao: ");
 }
 
@@ -234,6 +235,8 @@ void controller_LLE(){
         case 8:
             mostrar_listaLLE(lista);
             break;
+        case 0:
+            break;
         default:
             printf("\n\tOpcao invalida...\n");
             break;
@@ -242,4 +245,5 @@ void controller_LLE(){
     }while(op != 0);
 
 free(lista);
+return;
 }
