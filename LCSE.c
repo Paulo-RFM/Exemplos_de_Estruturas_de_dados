@@ -12,7 +12,7 @@ void inicializa_lista(No_LCSE** lista){
     *lista = NULL;
 }
 
-bool lista_vazia(No_LCSE** lista){
+bool lista_vaziaLCSE(No_LCSE** lista){
     if(*lista == NULL){
         return true;        
     }else{
@@ -30,7 +30,7 @@ void inserir_inicio(No_LCSE** lista, char elemento){
 
     if(no_LCSEvo != NULL){
         no_LCSEvo->letra = elemento;
-        if(lista_vazia(&aux)){
+        if(lista_vaziaLCSE(&aux)){
             no_LCSEvo->prox = no_LCSEvo;
             *lista = no_LCSEvo;
             return;   
@@ -52,7 +52,7 @@ void inserir_final(No_LCSE** lista, char elemento){
     if(no_LCSEvo != NULL){
         no_LCSEvo->letra = elemento;
     
-        if(lista_vazia(&aux)){
+        if(lista_vaziaLCSE(&aux)){
             no_LCSEvo->prox = no_LCSEvo;
         }else{
             no_LCSEvo->prox = (*lista)->prox;
@@ -68,7 +68,7 @@ void inserir_final(No_LCSE** lista, char elemento){
 void remover_inicio(No_LCSE** lista){
     No_LCSE* aux = *lista;
 
-    if(lista_vazia(&aux)){
+    if(lista_vaziaLCSE(&aux)){
         printf("\n\tlista vazia...");
         return;
     }
@@ -89,7 +89,7 @@ void remover_inicio(No_LCSE** lista){
 void remover_final(No_LCSE** lista){
     No_LCSE* aux = *lista;
 
-    if(lista_vazia(&aux)){
+    if(lista_vaziaLCSE(&aux)){
         printf("\n\tLista Vazia...");
         return;
     }
@@ -114,7 +114,7 @@ void remover_final(No_LCSE** lista){
 void mostrar_lista(No_LCSE** lista){
     No_LCSE* aux = *lista;
 
-    if(lista_vazia(&aux)){
+    if(lista_vaziaLCSE(&aux)){
         printf("->Null\n");
         return;
     }
@@ -131,7 +131,7 @@ void mostra_vogais(No_LCSE** lista){
     No_LCSE* aux = *lista;
     char vogais[] = {'a', 'e', 'i', 'o', 'u'};
 
-    if(lista_vazia(&aux)){
+    if(lista_vaziaLCSE(&aux)){
         printf("\n\tLista vazia");
         return;
     }
@@ -188,9 +188,9 @@ int pedir_int(){
 
 void menu_LCSE(){
     printf("\n\n\tMENU LCSE");
-    printf("\n(1) Inserir elemento no_LCSE início da lista");
-    printf("\n(2) Inserir elemento no_LCSE final da lista");
-    printf("\n(3) Remover elemento no_LCSE início da lista");
+    printf("\n(1) Inserir elemento início da lista");
+    printf("\n(2) Inserir elemento final da lista");
+    printf("\n(3) Remover elemento início da lista");
     printf("\n(4) Remover elemento do final da lista");
     printf("\n(5) Exibir todos os elementos da lista");
     printf("\n(6) Exibir os elementos que forem vogais");
