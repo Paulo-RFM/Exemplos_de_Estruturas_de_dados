@@ -137,6 +137,7 @@ void mostra_vogais(No_LCSE** lista){
     
     printf("\nVogais: ");
 
+    //Se existe apenas um elemento
      if(*lista == (*lista)->prox){
         if(aux->letra == 'a' || aux->letra == 'e' || aux->letra == 'i' || aux->letra == 'o' || aux->letra == 'u'){
             putchar(aux->letra);
@@ -149,7 +150,7 @@ void mostra_vogais(No_LCSE** lista){
             putchar(aux->letra);
         }
         aux = aux->prox;
-    }while(aux->prox != *lista);
+    }while(aux != *lista);
 
 return;
 }
