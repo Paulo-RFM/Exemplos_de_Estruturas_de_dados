@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 //Lista Circular Simplesmente Encadeada
 typedef struct sBBT_LCSE{
     char letra;
@@ -26,18 +27,18 @@ No_LCSE* aloca_No_LCSE(){
 
 void inserir_inicio(No_LCSE** lista, char elemento){
     No_LCSE* aux = *lista;
-    No_LCSE* no_LCSEvo = aloca_No_LCSE();
+    No_LCSE* novo = aloca_No_LCSE();
 
-    if(no_LCSEvo != NULL){
-        no_LCSEvo->letra = elemento;
+    if(novo != NULL){
+        novo->letra = elemento;
         if(lista_vaziaLCSE(&aux)){
-            no_LCSEvo->prox = no_LCSEvo;
-            *lista = no_LCSEvo;
-            return;   
+            novo->prox = novo;
+            *lista = novo;
+            return;  
         }
 
-        no_LCSEvo->prox = (*lista)->prox;
-        (*lista)->prox = no_LCSEvo;
+        novo->prox = (*lista)->prox;
+        (*lista)->prox = novo;
 
     }else{
         printf("\n\tErro na alocacao...\n");
@@ -47,18 +48,18 @@ void inserir_inicio(No_LCSE** lista, char elemento){
 
 void inserir_final(No_LCSE** lista, char elemento){
     No_LCSE* aux = *lista;
-    No_LCSE* no_LCSEvo = aloca_No_LCSE();
+    No_LCSE* novo = aloca_No_LCSE();
 
-    if(no_LCSEvo != NULL){
-        no_LCSEvo->letra = elemento;
+    if(novo != NULL){
+        novo->letra = elemento;
     
         if(lista_vaziaLCSE(&aux)){
-            no_LCSEvo->prox = no_LCSEvo;
+            novo->prox = novo;
         }else{
-            no_LCSEvo->prox = (*lista)->prox;
-            (*lista)->prox = no_LCSEvo;
+            novo->prox = (*lista)->prox;
+            (*lista)->prox = novo;
         }
-        *lista = no_LCSEvo;
+        *lista = novo;
     }else{
         printf("\n\tErro na alocacao\n");
         return;
@@ -101,6 +102,7 @@ void remover_final(No_LCSE** lista){
     }
 
     do{
+        //faz aux apontar para o penultimo elemento da lista*
         aux = aux->prox;
         
     }while(aux->prox != *lista);
@@ -189,12 +191,12 @@ int pedir_int(){
 
 void menu_LCSE(){
     printf("\n\n\tMENU LCSE");
-    printf("\n(1) Inserir elemento início da lista");
-    printf("\n(2) Inserir elemento final da lista");
-    printf("\n(3) Remover elemento início da lista");
-    printf("\n(4) Remover elemento do final da lista");
-    printf("\n(5) Exibir todos os elementos da lista");
-    printf("\n(6) Exibir os elementos que forem vogais");
+    printf("\n(1) Inserir letra no início da lista");
+    printf("\n(2) Inserir letra no final da lista");
+    printf("\n(3) Remover letra do início da lista");
+    printf("\n(4) Remover letra do final da lista");
+    printf("\n(5) Exibir todos as letras da lista");
+    printf("\n(6) Exibir as letras que forem vogais");
     printf("\n(0) Voltar ao menu inicial");
     printf("\nEntre com uma opcao: ");
 }
