@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 //Lista Simplesmente Encadeada
 typedef struct sLSE{
@@ -13,7 +14,7 @@ void menu_LSE(){
     printf("\n(1) Inserir elemento início da lista");
     printf("\n(2) Inserir elemento final da lista");
     printf("\n(3) Remover elemento no inicio da lista");
-    printf("\n(4) Remover elemento por valor");
+    printf("\n(7) Remover elemento por valor");
     /*printf("\n(5) ");
     printf("\n(6) ");
     printf("\n(7) ");*/
@@ -60,7 +61,7 @@ No_LSE* inserir_inicioLSE(No_LSE* lista){
     No_LSE* novo = aloca_No_LSE(novo);
 
     if(novo != NULL){
-        printf("Entre com o valor:");
+        printf("Entre com um valor inteiro:");
         scanf("%d", &elem);
         novo->info = elem;
         
@@ -83,17 +84,18 @@ No_LSE* inserir_inicioLSE(No_LSE* lista){
 No_LSE* inserir_fimLSE(No_LSE* lista){
     No_LSE* novo = aloca_No_LSE(lista);
     No_LSE* aux = lista;
+    No_LSE* ant = aux;
     int elem;
 
     if(novo != NULL){
         novo->prox = NULL;
-        printf("Entre com o elemento: ");
+        printf("Entre com um valor inteiro: ");
         scanf("%d", &elem);
         novo->info = elem;
         
         if(lista_vaziaLSE(lista)){
             lista = novo;
-            return;
+            return lista;
         }
 
         while(aux->prox != NULL){ //Encontra ultimo elemento da lista;
@@ -101,7 +103,7 @@ No_LSE* inserir_fimLSE(No_LSE* lista){
         }
     }else{
         printf("\n\tErro na alocacao");
-        return ;
+        return lista;
     }
 
     aux->prox = novo;
@@ -113,7 +115,7 @@ No_LSE* remover_inicioLSE(No_LSE* lista){
 
     if(lista_vaziaLSE(aux)){
         printf("\n\tLista vazia");
-        return;
+        return lista;
     }
 
     lista = aux->prox;
@@ -121,32 +123,95 @@ No_LSE* remover_inicioLSE(No_LSE* lista){
 
 return lista;
 }
-/*
-No_LSE* remove_elementoLSE(No_LSE* lista){
+
+No_LSE* remover_elementoLSE(No_LSE* lista){
     No_LSE* aux = lista;
     No_LSE* ant = lista;
+    No_LSE* q = NULL;
     int elem = 0, k = 0;
+    
     if(lista_vaziaLSE(lista)){
         printf("\n\tlLista vazia");
-        return;
+        return lista;
     }
 
     printf("\n-Entre com o valor a ser removido: ");
     scanf("%d", &elem);
 
-    //if(lista->prox == NULL && aux == lista){
-        if(aux->info == elem){
-            ant = aux->prox;
-            lista = ant;
-            
+    //Elemento na primeira posição
+    if(aux->info == elem){
+        if(aux->prox != NULL){
+           aux = aux->prox;
+           lista = aux;
+           free(ant);
+           return lista;
+        }else{
+            aux = aux->prox;
+            lista = aux;
+            free(ant);
+            return lista;
         }
-    
+    }
 
-    
-    free(aux);
-    free(ant);
+    do{
+        if(aux->info == elem){
+            aux = aux->prox;
+            q = ant->prox;
+            ant->prox = aux;
+            ant = q;
+            free(ant);
+            return lista;
+        }
+        ant = aux;
+        aux = aux->prox;
+
+    }while(aux != NULL);
+
+return lista;
 }
-*/
+
+//função implementada usando caracter como info da estrutura
+void exercicio_3_LSE(No_LSE** lista){
+    No_LSE* aux = *lista;
+    No_LSE* ptrO = *lista;
+    No_LSE* ptrB = *lista;
+    No_LSE* ptrS = aux;
+    No_LSE* ptrA = aux;
+
+    while(aux != NULL){
+        
+        if(aux->info == 'o' || aux->info == 'O'){
+            ptrO = aux;
+            ptrS->prox = NULL;
+            aux = *lista;
+            while(aux != NULL){
+                if(aux->info == 'b' || aux->info == 'B'){
+                    ptrB = aux;
+                    ptrA->prox = ptrS; 
+                    aux = aux->prox;
+                }else{
+                    ptrA = aux;
+                    aux = aux->prox;
+                }
+            }
+        }else{
+            ptrS = aux;
+            aux = aux->prox;
+        }
+
+    }
+
+    ptrO->prox = *lista;
+    ptrB->prox = ptrO;
+    *lista = ptrB;
+    aux = *lista;
+    while(aux != NULL){
+        putchar(aux->info);
+        aux = aux->prox;
+    }
+return;
+}
+
 void mostrar_listaLSE(No_LSE* lista){
     No_LSE* aux = lista;
     
@@ -157,7 +222,8 @@ void mostrar_listaLSE(No_LSE* lista){
 
     printf("\nLISTA:\n ptrLista->");
     do{
-        printf("%d->", aux->info);
+        printf("%d", aux->info);
+        printf("->");
         aux = aux->prox;
     }while(aux != NULL);
 
@@ -184,7 +250,7 @@ void controller_LSE(){
          case 3:
            lista = remover_inicioLSE(lista);
             break;
-        /*case 4:
+         /*case 4:
             modificar_listaLSE(lista);
             break;
         case 5:
@@ -192,10 +258,10 @@ void controller_LSE(){
             break;
         case 6:
             remover_finalLSE(lista);
-            break;
-        case 7:
-            remover_elementoLSE(lista);
             break;*/
+        case 7:
+           lista = remover_elementoLSE(lista);
+            break;
         case 8:
             mostrar_listaLSE(lista);
             break;
