@@ -68,17 +68,15 @@ No_LSE* inserir_inicioLSE(No_LSE* lista){
         if(lista_vaziaLSE(lista)){
             novo->prox = NULL;
             lista = novo;
-            return lista;
+        }else{
+            novo->prox = lista;
+            lista = novo;
         }
-
-        novo->prox = lista;
-        lista = novo;
     }else{
-        printf("\n\tErro na alocacao..\n");
-        return NULL;
+        printf("\n\tErro na alocacaodo novo no..\n");
     }
 
-    return lista;
+return lista;
 }
 
 No_LSE* inserir_fimLSE(No_LSE* lista){
@@ -105,7 +103,6 @@ No_LSE* inserir_fimLSE(No_LSE* lista){
         printf("\n\tErro na alocacao");
         return lista;
     }
-
     aux->prox = novo;
     return lista;
 }
