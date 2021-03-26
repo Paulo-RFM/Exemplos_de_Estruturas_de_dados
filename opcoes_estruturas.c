@@ -6,6 +6,7 @@
 #include "LSE.c"
 #include "LDE.c"
 #include "PLE.c"
+#include "PLD.c"
 
 int main(){
     int op;
@@ -28,6 +29,9 @@ int main(){
                 break;
             case 5:
                 controller_PLE();
+                break;
+            case 6:
+                controller_PLD();
                 break;
             default:
                 printf("\nOpção invalida...\n");
