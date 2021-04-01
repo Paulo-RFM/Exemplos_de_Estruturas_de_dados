@@ -76,6 +76,19 @@ char retornar_topoPLE(No_PLE* pilha){
     }
 }
 
+void desempilhar(No_PLE* pilha){
+    No_PLE* aux = pilha;
+    if(pilha_vaziaPLE(aux)){
+        printf("\nPilha vazia");
+        return;
+    }
+
+    while(aux->topo != -1){
+        printf("%c", aux->letras[aux->topo]);
+        aux->topo--;
+    }
+}
+
 void mostrar_pilhaPLE(No_PLE* pilha){
 
     if(pilha_vaziaPLE(pilha)){
@@ -94,7 +107,8 @@ void menu_PLE(){
     printf("\n(1) Inserir letra na pilha(PUSH)");
     printf("\n(2) Remover letra do topo da pilha(POP)");
     printf("\n(3) Retornar ultimo elemento da lista");
-    printf("\n(4) Exibir todos os elementos pilha");
+    printf("\n(4) Exibir todos os elementos pilha(representação classica)");
+    printf("\n(5) Exibir elementos sem remover");
     printf("\n(0) Voltar para menu inicial");
     printf("\nEntre com uma opcao: ");
 }
@@ -120,6 +134,9 @@ void controller_PLE(){
             retornar_topoPLE(&pilha);
             break;
         case 4:
+            desempilhar(&pilha);
+            break;
+        case 5:
             mostrar_pilhaPLE(&pilha);
             break;
         default:
