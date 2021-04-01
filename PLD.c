@@ -10,7 +10,6 @@ typedef struct sPrato{
     char tipo_prato[15];
 }Prato;
 
-
 typedef struct sPLD{
     Prato prato;
     struct sPLD* prox;
@@ -20,12 +19,11 @@ void menu_PLD(){
     printf("\n\n\tMENU PLD");
     printf("\n(1) Inserir prato na pilha(PUSH)");
     printf("\n(2) Remover prato do topo da pilha(POP)");
-    /*printf("\n(3) Retornar ultimo prato da lista");
-    printf("\n(4) Exibir todos os pratos pilha");
-    printf("\n(0) Voltar para menu inicial");*/
+    printf("\n(3) Retornar ultimo prato da lista");
+    printf("\n(4) Exibir todos os pratos da pilha");
+    printf("\n(0) Voltar para menu inicial");
     printf("\nEntre com uma opcao: ");
 }
-
 
 void inicializa_pilhaDinan(No_PLD** pilha){
     *pilha = NULL;
@@ -99,7 +97,53 @@ void pop_PLD(No_PLD** pilha){
     }
 }
 
+Prato retornar_topoPLD(No_PLD** pilha){
+    No_PLD* aux = *pilha;
 
+    if(pilha_vaziaPLD(&aux)){
+        printf("\n\tLista vazia");
+    }else{
+        return aux->prato;
+    }
+}
+
+void desempilhar_PLD(No_PLD** pilha){ 
+    No_PLD* aux = *pilha;
+    No_PLD* ant = *pilha;
+
+    if(pilha_vaziaPLD(&aux)){
+        printf(("\nPilha vazia"));
+    }else{
+        while(aux != NULL){
+            printf("\nPrato de cor %s, de tamanho %d e feito de %s", aux->prato.cor,
+                                                                     aux->prato.tamanaho,
+                                                                     aux->prato.tipo_prato);
+            aux = aux->prox;
+            free(ant);
+            ant = aux;
+        }
+    }
+    free(aux);
+    //aux = NULL;
+    free(ant);
+    *pilha = aux;
+}
+
+void mostrar_pilhaPLD(No_PLD** pilha){
+    No_PLD* aux = *pilha;
+
+    if(pilha_vaziaPLD(&aux)){
+        printf("\n\tPilha vazia");
+    }else{
+        while(aux != NULL){
+            printf("\nPrato de cor %s, de tamanho %d e feito de %s", aux->prato.cor, 
+                                                                    aux->prato.tamanaho,
+                                                                    aux->prato.tipo_prato);
+            aux = aux->prox;
+        }
+        
+    }
+}
 
 void controller_PLD(){
     No_PLD* pilha;
@@ -117,6 +161,15 @@ void controller_PLD(){
             case 2:
                 pop_PLD(&pilha);
                 break;
+            case 3:
+                retornar_topoPLD(&pilha);
+                break;
+            case 4:
+                desempilhar_PLD(&pilha);
+                break;
+            case 5:
+                mostrar_pilhaPLD(&pilha);
+                break;        
             default:
                 printf("\nOpcao invalida...");
                 break;
